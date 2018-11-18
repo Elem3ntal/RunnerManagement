@@ -7,7 +7,7 @@ namespace RunnersLibrary
 {
     public static class Categories
     {
-        public static Dictionary<string, object> Words
+        public static Dictionary<string, object> Options
         {
             get
             {

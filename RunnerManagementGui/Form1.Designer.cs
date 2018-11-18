@@ -35,8 +35,8 @@
             this.buttonResultReset = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panelMessages = new System.Windows.Forms.Panel();
-            this.labelTitleMessages = new System.Windows.Forms.Label();
             this.labelMessagesText = new System.Windows.Forms.Label();
+            this.labelTitleMessages = new System.Windows.Forms.Label();
             this.tableLayoutPanelInputRegister = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelInputButtons = new System.Windows.Forms.TableLayoutPanel();
             this.buttonInputAdd = new System.Windows.Forms.Button();
@@ -122,7 +122,7 @@
             this.buttonResultConsult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonResultConsult.Location = new System.Drawing.Point(3, 3);
             this.buttonResultConsult.Name = "buttonResultConsult";
-            this.buttonResultConsult.Size = new System.Drawing.Size(155, 42);
+            this.buttonResultConsult.Size = new System.Drawing.Size(156, 42);
             this.buttonResultConsult.TabIndex = 0;
             this.buttonResultConsult.Text = "button1";
             this.buttonResultConsult.UseVisualStyleBackColor = true;
@@ -130,9 +130,9 @@
             // buttonResultReset
             // 
             this.buttonResultReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonResultReset.Location = new System.Drawing.Point(164, 3);
+            this.buttonResultReset.Location = new System.Drawing.Point(165, 3);
             this.buttonResultReset.Name = "buttonResultReset";
-            this.buttonResultReset.Size = new System.Drawing.Size(155, 42);
+            this.buttonResultReset.Size = new System.Drawing.Size(156, 42);
             this.buttonResultReset.TabIndex = 1;
             this.buttonResultReset.Text = "button2";
             this.buttonResultReset.UseVisualStyleBackColor = true;
@@ -140,9 +140,9 @@
             // buttonClose
             // 
             this.buttonClose.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonClose.Location = new System.Drawing.Point(325, 3);
+            this.buttonClose.Location = new System.Drawing.Point(327, 3);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(158, 42);
+            this.buttonClose.Size = new System.Drawing.Size(156, 42);
             this.buttonClose.TabIndex = 2;
             this.buttonClose.Text = "button3";
             this.buttonClose.UseVisualStyleBackColor = true;
@@ -158,15 +158,6 @@
             this.panelMessages.Size = new System.Drawing.Size(486, 48);
             this.panelMessages.TabIndex = 1;
             // 
-            // labelTitleMessages
-            // 
-            this.labelTitleMessages.AutoSize = true;
-            this.labelTitleMessages.Location = new System.Drawing.Point(10, 4);
-            this.labelTitleMessages.Name = "labelTitleMessages";
-            this.labelTitleMessages.Size = new System.Drawing.Size(29, 13);
-            this.labelTitleMessages.TabIndex = 0;
-            this.labelTitleMessages.Text = "label";
-            // 
             // labelMessagesText
             // 
             this.labelMessagesText.AutoSize = true;
@@ -175,6 +166,15 @@
             this.labelMessagesText.Size = new System.Drawing.Size(29, 13);
             this.labelMessagesText.TabIndex = 1;
             this.labelMessagesText.Text = "label";
+            // 
+            // labelTitleMessages
+            // 
+            this.labelTitleMessages.AutoSize = true;
+            this.labelTitleMessages.Location = new System.Drawing.Point(10, 4);
+            this.labelTitleMessages.Name = "labelTitleMessages";
+            this.labelTitleMessages.Size = new System.Drawing.Size(29, 13);
+            this.labelTitleMessages.TabIndex = 0;
+            this.labelTitleMessages.Text = "label";
             // 
             // tableLayoutPanelInputRegister
             // 
@@ -215,7 +215,7 @@
             this.buttonInputAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonInputAdd.Location = new System.Drawing.Point(3, 3);
             this.buttonInputAdd.Name = "buttonInputAdd";
-            this.buttonInputAdd.Size = new System.Drawing.Size(153, 31);
+            this.buttonInputAdd.Size = new System.Drawing.Size(154, 31);
             this.buttonInputAdd.TabIndex = 0;
             this.buttonInputAdd.Text = "button1";
             this.buttonInputAdd.UseVisualStyleBackColor = true;
@@ -223,9 +223,9 @@
             // buttonInputUpdate
             // 
             this.buttonInputUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonInputUpdate.Location = new System.Drawing.Point(162, 3);
+            this.buttonInputUpdate.Location = new System.Drawing.Point(163, 3);
             this.buttonInputUpdate.Name = "buttonInputUpdate";
-            this.buttonInputUpdate.Size = new System.Drawing.Size(153, 31);
+            this.buttonInputUpdate.Size = new System.Drawing.Size(154, 31);
             this.buttonInputUpdate.TabIndex = 1;
             this.buttonInputUpdate.Text = "button2";
             this.buttonInputUpdate.UseVisualStyleBackColor = true;
@@ -233,9 +233,9 @@
             // buttonInputRemove
             // 
             this.buttonInputRemove.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonInputRemove.Location = new System.Drawing.Point(321, 3);
+            this.buttonInputRemove.Location = new System.Drawing.Point(323, 3);
             this.buttonInputRemove.Name = "buttonInputRemove";
-            this.buttonInputRemove.Size = new System.Drawing.Size(156, 31);
+            this.buttonInputRemove.Size = new System.Drawing.Size(154, 31);
             this.buttonInputRemove.TabIndex = 2;
             this.buttonInputRemove.Text = "button3";
             this.buttonInputRemove.UseVisualStyleBackColor = true;
@@ -281,12 +281,12 @@
             this.tableLayoutPanelInputData.Controls.Add(this.dateTimePickerInputStart, 2, 1);
             this.tableLayoutPanelInputData.Controls.Add(this.comboBoxInputcategorie, 1, 1);
             this.tableLayoutPanelInputData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelInputData.Location = new System.Drawing.Point(3, 21);
+            this.tableLayoutPanelInputData.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanelInputData.Name = "tableLayoutPanelInputData";
             this.tableLayoutPanelInputData.RowCount = 2;
             this.tableLayoutPanelInputData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanelInputData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanelInputData.Size = new System.Drawing.Size(474, 49);
+            this.tableLayoutPanelInputData.Size = new System.Drawing.Size(474, 48);
             this.tableLayoutPanelInputData.TabIndex = 1;
             this.tableLayoutPanelInputData.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 

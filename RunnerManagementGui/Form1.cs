@@ -17,8 +17,61 @@ namespace RunnerManagementGui
             InitializeComponent();
             bool loadProcess = true;
             loadProcess &= loadLabelsText();
+            loadProcess &= loadDefaultChoices();
+            loadProcess &= loadRegisterColumns();
+            loadProcess &= loadResultColumns();
             sendMessage(loadProcess ? "Carga Correcta" : "Error al iniciar");
             test();
+        }
+        public bool loadRegisterColumns()
+        {
+            try
+            {
+                List<string> columnsStructure = GridsStructure.ColumnsRegister;
+                dataGridViewRegisterRun.ColumnCount = columnsStructure.Count;
+                dataGridViewRegisterRun.ColumnHeadersVisible = true;
+                for (int i = 0; i < columnsStructure.Count; i++)
+                    dataGridViewRegisterRun.Columns[i].Name = columnsStructure[i];
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool loadResultColumns()
+        {
+            try
+            {
+                List<string> columnsStructure = GridsStructure.ColumnsResult;
+                dataGridViewResultsRun.ColumnCount = columnsStructure.Count;
+                dataGridViewResultsRun.ColumnHeadersVisible = true;
+                for (int i = 0; i < columnsStructure.Count; i++)
+                    dataGridViewResultsRun.Columns[i].Name = columnsStructure[i];
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool loadDefaultChoices()
+        {
+            try
+            {
+                comboBoxInputcategorie.DisplayMember = "Text";
+                comboBoxInputcategorie.SelectedValue = "Text";
+                comboBoxInputcategorie.ValueMember = "Value";
+                comboBoxInputcategorie.DataSource = (from i in Categories.Options.Keys.ToList()
+                                                     where i.StartsWith("OptionCategorie", StringComparison.InvariantCultureIgnoreCase)
+                                                     select Categories.Options[i]).ToList();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
         public bool loadLabelsText()
         {
