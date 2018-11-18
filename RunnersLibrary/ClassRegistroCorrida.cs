@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -14,7 +15,8 @@ namespace RunnersLibrary
 
         public RegistroCorrida() { }
 
-        public RegistroCorrida(int numeroCorredor, int categoria, string horaPartida, string horaLLegada) {
+        public RegistroCorrida(int numeroCorredor, int categoria, string horaPartida, string horaLLegada)
+        {
             this.numeroCorredor = numeroCorredor;
             this.categoria = categoria;
             this.horaPartida = horaPartida;
@@ -22,10 +24,9 @@ namespace RunnersLibrary
         }
         public String obtenerTiempo()
         {
-            String output;
-            DateTime horaPartida = DateTime.Parse(this.horaPartida, System.Globalization.CultureInfo.CurrentCulture);
-            Console.WriteLine('{0}', horaPartida);
-            return output;
+            DateTime horaPartida = DateTime.ParseExact(this.horaPartida, "HH:mm:ss", CultureInfo.InvariantCulture); ;
+            DateTime horaLlegada = DateTime.ParseExact(this.horaLlegada, "HH:mm:ss", CultureInfo.InvariantCulture); ;
+            return String.Format("{0}", horaLlegada - horaPartida);
         }
     }
 }
