@@ -11,7 +11,7 @@ namespace RunnerManagementGui
         {
             /* Los nombres de las columnas deben estar en el 
              * diccionario que retorna la clase RegistroCorrida, 
-             * para asi, adecuarse dinamicamente a los cambios de aqui */
+             * para asi, adecuarse dinamicamente a los cambios de aqui hola <3*/
             get
             {
                 return new List<string>(new string[]
