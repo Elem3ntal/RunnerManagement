@@ -20,7 +20,7 @@ namespace RunnersLibrary
             this.numeroCorredor = numeroCorredor;
             this.categoria = categoria;
             this.horaPartida = horaPartida;
-            this.horaLlegada = horaLlegada;
+            this.horaLlegada = horaLLegada;
         }
         public String obtenerTiempo()
         {

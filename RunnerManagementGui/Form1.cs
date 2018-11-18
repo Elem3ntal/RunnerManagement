@@ -12,9 +12,11 @@ namespace RunnerManagementGui
 {
     public partial class Form1 : Form
     {
+        CollectionsRegister data;
         public Form1()
         {
             InitializeComponent();
+            data = new CollectionsRegister();
             bool loadProcess = true;
             loadProcess &= loadLabelsText();
             loadProcess &= loadDefaultChoices();
@@ -128,6 +130,7 @@ namespace RunnerManagementGui
             //TODO: validar que se puede llamar a addRunner, 
             //      es decir, los campos son validos
             addRunner();
+            reloadRegisterRun();
         }
         private bool addRunner()
         {
@@ -135,9 +138,22 @@ namespace RunnerManagementGui
             int numero, categorie;
             string timeStart = dateTimePickerInputStart.Text;
             string timeEnd = dateTimePickerInputEnd.Text;
+            Console.WriteLine("time end{0}", timeEnd);
             int.TryParse(textBoxInputNumber.Text, out numero);
             int.TryParse(comboBoxInputcategorie.SelectedValue.ToString(), out categorie);
-            RegistroCorrida runner = new RegistroCorrida(numero, categorie, timeStart, timeEnd);
+            this.data.addRunner(new RegistroCorrida(numero, categorie, timeStart, timeEnd));
+            return true;
+        }
+        private bool reloadRegisterRun() {
+            dataGridViewRegisterRun.Rows.Clear();
+            foreach (Dictionary<string, string> runner in this.data.allRunners())
+            {
+                List<string> register = new List<string>();
+                foreach(string data in GridsStructure.ColumnsRegister)
+                    register.Add(runner[data]);
+                dataGridViewRegisterRun.Rows.Add(register.ToArray());
+
+            }
             return true;
         }
     }
