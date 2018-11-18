@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories.cs" />
     <Compile Include="ClassRegistroCorrida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
