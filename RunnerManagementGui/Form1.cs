@@ -105,12 +105,12 @@ namespace RunnerManagementGui
         }
         public void test()
         {
-            RegistroCorrida weon = new RegistroCorrida();
-            weon.horaPartida = "19:15:30";
-            weon.horaLlegada = "20:30:25";
-            Console.WriteLine("se partio: {0}", weon.horaPartida);
-            Console.WriteLine("se llego: {0}", weon.horaLlegada);
-            Console.WriteLine("se demoro: {0}", weon.obtenerTiempo());
+            RegistroCorrida dude = new RegistroCorrida();
+            dude.horaPartida = "19:15:30";
+            dude.horaLlegada = "20:30:25";
+            Console.WriteLine("se partio: {0}", dude.horaPartida);
+            Console.WriteLine("se llego: {0}", dude.horaLlegada);
+            Console.WriteLine("se demoro: {0}", dude.obtenerTiempo());
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -121,6 +121,24 @@ namespace RunnerManagementGui
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void buttonInputAdd_Click(object sender, EventArgs e)
+        {
+            //TODO: validar que se puede llamar a addRunner, 
+            //      es decir, los campos son validos
+            addRunner();
+        }
+        private bool addRunner()
+        {
+            //numero, corrida, hora start, hora end
+            int numero, categorie;
+            string timeStart = dateTimePickerInputStart.Text;
+            string timeEnd = dateTimePickerInputEnd.Text;
+            int.TryParse(textBoxInputNumber.Text, out numero);
+            int.TryParse(comboBoxInputcategorie.SelectedValue.ToString(), out categorie);
+            RegistroCorrida runner = new RegistroCorrida(numero, categorie, timeStart, timeEnd);
+            return true;
         }
     }
 }

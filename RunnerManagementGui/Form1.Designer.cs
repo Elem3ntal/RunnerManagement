@@ -219,6 +219,7 @@
             this.buttonInputAdd.TabIndex = 0;
             this.buttonInputAdd.Text = "button1";
             this.buttonInputAdd.UseVisualStyleBackColor = true;
+            this.buttonInputAdd.Click += new System.EventHandler(this.buttonInputAdd_Click);
             // 
             // buttonInputUpdate
             // 
@@ -340,6 +341,7 @@
             this.dateTimePickerInputEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerInputEnd.Location = new System.Drawing.Point(357, 21);
             this.dateTimePickerInputEnd.Name = "dateTimePickerInputEnd";
+            this.dateTimePickerInputEnd.ShowUpDown = true;
             this.dateTimePickerInputEnd.Size = new System.Drawing.Size(114, 20);
             this.dateTimePickerInputEnd.TabIndex = 5;
             // 
@@ -349,6 +351,7 @@
             this.dateTimePickerInputStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerInputStart.Location = new System.Drawing.Point(239, 21);
             this.dateTimePickerInputStart.Name = "dateTimePickerInputStart";
+            this.dateTimePickerInputStart.ShowUpDown = true;
             this.dateTimePickerInputStart.Size = new System.Drawing.Size(112, 20);
             this.dateTimePickerInputStart.TabIndex = 6;
             // 

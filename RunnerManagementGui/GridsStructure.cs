@@ -7,11 +7,12 @@ namespace RunnerManagementGui
 {
     public static class GridsStructure
     {
-        public static List<string> ColumnsRegister
-        {
-            /* Los nombres de las columnas deben estar en el 
+        /* Los nombres de las columnas deben estar en el 
              * diccionario que retorna la clase RegistroCorrida, 
              * para asi, adecuarse dinamicamente a los cambios de aqui */
+
+        public static List<string> ColumnsRegister
+        {
             get
             {
                 return new List<string>(new string[]
@@ -27,19 +28,14 @@ namespace RunnerManagementGui
         }
         public static List<string> ColumnsResult
         {
-            /* Los nombres de las columnas deben estar en el 
-             * diccionario que retorna la clase RegistroCorrida, 
-             * para asi, adecuarse dinamicamente a los cambios de aqui */
             get
             {
                 return new List<string>(new string[]
                 {
-                    "numero",
                     "categoria",
-                    "horaPartida",
-                    "horaLlegada",
-                    "Tiempo",
-                    "Lugar"
+                    "numero",
+                    "Lugar",
+                    "Tiempo"
                 });
             }
         }
