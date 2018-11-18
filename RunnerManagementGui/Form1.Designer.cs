@@ -399,6 +399,7 @@
             this.dataGridViewRegisterRun.ReadOnly = true;
             this.dataGridViewRegisterRun.Size = new System.Drawing.Size(474, 338);
             this.dataGridViewRegisterRun.TabIndex = 1;
+            this.dataGridViewRegisterRun.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRegisterRun_CellContentClick);
             // 
             // tableLayoutPanelResultsRun
             // 

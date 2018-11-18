@@ -131,6 +131,14 @@ namespace RunnerManagementGui
             //      es decir, los campos son validos
             addRunner();
             reloadRegisterRun();
+            cleanRegister();
+        }
+        private void cleanRegister()
+        {
+            dateTimePickerInputStart.Text = "";
+            dateTimePickerInputEnd.Text = "";
+            textBoxInputNumber.Text = "";
+            comboBoxInputcategorie.SelectedIndex = 0;
         }
         private bool addRunner()
         {
@@ -155,6 +163,15 @@ namespace RunnerManagementGui
 
             }
             return true;
+        }
+
+        private void dataGridViewRegisterRun_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridViewRegisterRun.Rows[e.RowIndex];
+            Console.WriteLine(row.Cells[0].Value);
+            Console.WriteLine(row.Cells[1].Value);
+            Console.WriteLine(row.Cells[2].Value);
+            Console.WriteLine(row.Cells[3].Value);
         }
     }
 }

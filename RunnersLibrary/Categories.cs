@@ -12,12 +12,12 @@ namespace RunnersLibrary
             get
             {
                 return new Dictionary<string, object> {
-                    { "OptionCategorie0", new { Text = "", Value = "" } },
-                    { "OptionCategorie1", new { Text = "5k", Value = "0" } },
-                    { "OptionCategorie2", new { Text = "10k", Value = "1" } },
-                    { "OptionCategorie3", new { Text = "16k", Value = "2" } },
-                    { "OptionCategorie4", new { Text = "21k", Value = "3" } },
-                    { "OptionCategorie5", new { Text = "42k", Value = "4" } },
+                    { "OptionCategorie", new { Text = "", Value = "" } },
+                    { "OptionCategorie0", new { Text = "5k", Value = "0" } },
+                    { "OptionCategorie1", new { Text = "10k", Value = "1" } },
+                    { "OptionCategorie2", new { Text = "16k", Value = "2" } },
+                    { "OptionCategorie3", new { Text = "21k", Value = "3" } },
+                    { "OptionCategorie4", new { Text = "42k", Value = "4" } },
                 };
             }
         }

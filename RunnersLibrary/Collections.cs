@@ -29,14 +29,17 @@ namespace RunnersLibrary
         {
             List<Dictionary<string, string>> output = new List<Dictionary<string, string>>();
             foreach (RegistroCorrida runner in this.runners)
+            {
+                dynamic cat = Categories.Options[string.Format("OptionCategorie{0}", runner.categoria.ToString())];
                 output.Add(new Dictionary<string, string> {
                     { "numero", runner.numeroCorredor.ToString()},
-                    { "categoria", runner.categoria.ToString()},
+                    { "categoria", cat.Text},
                     { "horaPartida", runner.horaPartida},
                     { "horaLlegada", runner.horaLlegada},
                     { "Tiempo", runner.obtenerTiempo()},
                     { "Lugar","-"},
                 });
+            }
             return output;
 
         }
