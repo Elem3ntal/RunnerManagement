@@ -24,8 +24,8 @@ namespace RunnersLibrary
         }
         public String obtenerTiempo()
         {
-            DateTime horaPartida = DateTime.ParseExact(this.horaPartida, "HH:mm:ss", CultureInfo.InvariantCulture); ;
-            DateTime horaLlegada = DateTime.ParseExact(this.horaLlegada, "HH:mm:ss", CultureInfo.InvariantCulture); ;
+            DateTime horaPartida = DateTime.ParseExact(this.horaPartida, "HH:mm:ss", CultureInfo.InvariantCulture);
+            DateTime horaLlegada = DateTime.ParseExact(this.horaLlegada, "HH:mm:ss", CultureInfo.InvariantCulture);
             return String.Format("{0}", horaLlegada - horaPartida);
         }
     }

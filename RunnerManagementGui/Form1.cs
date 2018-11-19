@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -167,11 +168,29 @@ namespace RunnerManagementGui
 
         private void dataGridViewRegisterRun_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridViewRegisterRun.Rows[e.RowIndex];
-            Console.WriteLine(row.Cells[0].Value);
-            Console.WriteLine(row.Cells[1].Value);
-            Console.WriteLine(row.Cells[2].Value);
-            Console.WriteLine(row.Cells[3].Value);
+        }
+
+        private void dataGridViewRegisterRun_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                selectRunner(e.RowIndex);
+                unselectCells(dataGridViewRegisterRun);
+            }
+        }
+        private void selectRunner(int index)
+        {
+
+            DataGridViewRow row = dataGridViewRegisterRun.Rows[index];
+            textBoxInputNumber.Text = (string) row.Cells[0].Value;
+            comboBoxInputcategorie.SelectedIndex = comboBoxInputcategorie.FindString((string)row.Cells[1].Value);
+            dateTimePickerInputStart.Value = DateTime.ParseExact((string)row.Cells[2].Value, "HH:mm:ss", CultureInfo.InvariantCulture);
+            dateTimePickerInputEnd.Value = DateTime.ParseExact((string)row.Cells[3].Value, "HH:mm:ss", CultureInfo.InvariantCulture);
+        }
+        private void unselectCells(DataGridView table)
+        {
+            foreach (DataGridViewCell cell in table.SelectedCells)
+                cell.Selected = false;
         }
     }
 }
