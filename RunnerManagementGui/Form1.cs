@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -79,21 +80,21 @@ namespace RunnerManagementGui
         {
             try
             {
-                this.Text = (string)Texts.Words["titleForm"];
-                labelInputNumber.Text = (string)Texts.Words["textLabelInputNumber"];
-                labelInputCategorie.Text = (string)Texts.Words["textLabelInputCategorie"];
-                labelTitleInputRegister.Text = (string)Texts.Words["textLabelInputHeader"];
-                labelInputTimeStart.Text = (string)Texts.Words["textLabelInputTimeStart"];
-                labelInputTimeEnd.Text = (string)Texts.Words["textLabelInputTimeEnd"];
-                buttonInputAdd.Text = (string)Texts.Words["textButtonInputAdd"];
-                buttonInputUpdate.Text = (string)Texts.Words["textButtonInputUpdate"];
-                buttonInputRemove.Text = (string)Texts.Words["textButtonInputDelete"];
-                labelTitleRegisterRun.Text = (string)Texts.Words["labelTitleRegisterRun"];
-                labelTitleResultsRun.Text = (string)Texts.Words["labelTitleResultsRun"];
-                labelTitleMessages.Text = (string)Texts.Words["labelTitleMessages"];
-                buttonResultConsult.Text = (string)Texts.Words["textButtonResultDelete"];
-                buttonResultReset.Text = (string)Texts.Words["textButtonResultReset"];
-                buttonClose.Text = (string)Texts.Words["textButtonClose"];
+                this.Text = Texts.Words["titleForm"];
+                labelInputNumber.Text = Texts.Words["textLabelInputNumber"];
+                labelInputCategorie.Text = Texts.Words["textLabelInputCategorie"];
+                labelTitleInputRegister.Text = Texts.Words["textLabelInputHeader"];
+                labelInputTimeStart.Text = Texts.Words["textLabelInputTimeStart"];
+                labelInputTimeEnd.Text = Texts.Words["textLabelInputTimeEnd"];
+                buttonInputAdd.Text = Texts.Words["textButtonInputAdd"];
+                buttonInputUpdate.Text = Texts.Words["textButtonInputUpdate"];
+                buttonInputRemove.Text = Texts.Words["textButtonInputDelete"];
+                labelTitleRegisterRun.Text = Texts.Words["labelTitleRegisterRun"];
+                labelTitleResultsRun.Text = Texts.Words["labelTitleResultsRun"];
+                labelTitleMessages.Text = Texts.Words["labelTitleMessages"];
+                buttonResultConsult.Text = Texts.Words["textButtonResultDelete"];
+                buttonResultReset.Text = Texts.Words["textButtonResultReset"];
+                buttonClose.Text = Texts.Words["textButtonClose"];
             }
             catch (Exception e)
             {
@@ -129,16 +130,37 @@ namespace RunnerManagementGui
         {
             //TODO: validar que se puede llamar a addRunner, 
             //      es decir, los campos son validos
-            addRunner();
-            reloadRegisterRun();
-            cleanRegister();
+            /* validar:
+             *      que los campos sean validos.
+             *      que el numero del corredor, no este en Collections.
+             */
+            if (validFields())
+            {
+                addRunner();
+                reloadRegisterRun();
+                cleanRegister();
+            }
         }
+        private bool validFields()
+        {
+            bool isValid = true;
+            int value;
+            int.TryParse(textBoxInputNumber.Text, out value);
+            if (value == 0)
+            {
+                sendMessage(Texts.Words["invalidNumberRunner"]);
+                return false;
+            }
+            return true;
+        }
+
         private void cleanRegister()
         {
             dateTimePickerInputStart.Text = "";
             dateTimePickerInputEnd.Text = "";
             textBoxInputNumber.Text = "";
             comboBoxInputcategorie.SelectedIndex = 0;
+            textBoxInputNumber.ReadOnly = false;
         }
         private bool addRunner()
         {
@@ -152,12 +174,13 @@ namespace RunnerManagementGui
             this.data.addRunner(new RegistroCorrida(numero, categorie, timeStart, timeEnd));
             return true;
         }
-        private bool reloadRegisterRun() {
+        private bool reloadRegisterRun()
+        {
             dataGridViewRegisterRun.Rows.Clear();
             foreach (Dictionary<string, string> runner in this.data.allRunners())
             {
                 List<string> register = new List<string>();
-                foreach(string data in GridsStructure.ColumnsRegister)
+                foreach (string data in GridsStructure.ColumnsRegister)
                     register.Add(runner[data]);
                 dataGridViewRegisterRun.Rows.Add(register.ToArray());
 
@@ -167,11 +190,60 @@ namespace RunnerManagementGui
 
         private void dataGridViewRegisterRun_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dataGridViewRegisterRun.Rows[e.RowIndex];
-            Console.WriteLine(row.Cells[0].Value);
-            Console.WriteLine(row.Cells[1].Value);
-            Console.WriteLine(row.Cells[2].Value);
-            Console.WriteLine(row.Cells[3].Value);
+        }
+
+        private void dataGridViewRegisterRun_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                selectRunner(e.RowIndex);
+                unselectCells(dataGridViewRegisterRun);
+            }
+        }
+        private void selectRunner(int index)
+        {
+            DataGridViewRow row = dataGridViewRegisterRun.Rows[index];
+            textBoxInputNumber.ReadOnly = true;
+            textBoxInputNumber.Text = (string)row.Cells[0].Value;
+            comboBoxInputcategorie.SelectedIndex = comboBoxInputcategorie.FindString((string)row.Cells[1].Value);
+            dateTimePickerInputStart.Value = DateTime.ParseExact((string)row.Cells[2].Value, "HH:mm:ss", CultureInfo.InvariantCulture);
+            dateTimePickerInputEnd.Value = DateTime.ParseExact((string)row.Cells[3].Value, "HH:mm:ss", CultureInfo.InvariantCulture);
+        }
+        private void unselectCells(DataGridView table)
+        {
+            foreach (DataGridViewCell cell in table.SelectedCells)
+                cell.Selected = false;
+        }
+
+        private void buttonInputUpdate_Click(object sender, EventArgs e)
+        {
+            if (updateRunner())
+                reloadRegisterRun();
+            cleanRegister();
+        }
+
+        private void buttonInputRemove_Click(object sender, EventArgs e)
+        {
+            if (removeRunner())
+                reloadRegisterRun();
+            cleanRegister();
+        }
+        private bool updateRunner()
+        {
+            //numero, corrida, hora start, hora end
+            int numero, categorie;
+            string timeStart = dateTimePickerInputStart.Text;
+            string timeEnd = dateTimePickerInputEnd.Text;
+            int.TryParse(textBoxInputNumber.Text, out numero);
+            int.TryParse(comboBoxInputcategorie.SelectedValue.ToString(), out categorie);
+            return this.data.updateRunner(new RegistroCorrida(numero, categorie, timeStart, timeEnd));
+        }
+        private bool removeRunner()
+        {
+            int numero;
+            int.TryParse(textBoxInputNumber.Text, out numero);
+            return this.data.removeRunner(numero);
+
         }
     }
 }

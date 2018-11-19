@@ -7,11 +7,11 @@ namespace RunnerManagementGui
 {
     static class Texts
     {
-        public static Dictionary<string, object> Words
+        public static Dictionary<string, string> Words
         {
             get
             {
-                return new Dictionary<string, object> {
+                return new Dictionary<string, string> {
                     { "titleForm", "Consulta Estadistica de Running" },
                     { "textLabelInputHeader", "Datos del Registro del corredor" },
                     { "textLabelInputNumber", "Número" },
@@ -27,6 +27,7 @@ namespace RunnerManagementGui
                     { "textButtonResultDelete", "Consultar" },
                     { "textButtonResultReset", "Resetear" },
                     { "textButtonClose", "Cerrar" },
+                    { "invalidNumberRunner", "Numero de corredor Invalido" },
                 };
             }
         }
