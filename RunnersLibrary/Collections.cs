@@ -25,6 +25,30 @@ namespace RunnersLibrary
             }
             return true;
         }
+        public bool updateRunner(RegistroCorrida runner)
+        {
+            try
+            {
+                this.runners[this.runners.IndexOf(this.runners.Single(x => x.numeroCorredor == runner.numeroCorredor))] = runner;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool removeRunner(int runner_id)
+        {
+            try
+            {
+                this.runners.Remove(this.runners[this.runners.IndexOf(this.runners.Single(x => x.numeroCorredor == runner_id))]);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
         public List<Dictionary<string, string>> allRunners()
         {
             List<Dictionary<string, string>> output = new List<Dictionary<string, string>>();

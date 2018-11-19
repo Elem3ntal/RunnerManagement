@@ -230,6 +230,7 @@
             this.buttonInputUpdate.TabIndex = 1;
             this.buttonInputUpdate.Text = "button2";
             this.buttonInputUpdate.UseVisualStyleBackColor = true;
+            this.buttonInputUpdate.Click += new System.EventHandler(this.buttonInputUpdate_Click);
             // 
             // buttonInputRemove
             // 
@@ -240,6 +241,7 @@
             this.buttonInputRemove.TabIndex = 2;
             this.buttonInputRemove.Text = "button3";
             this.buttonInputRemove.UseVisualStyleBackColor = true;
+            this.buttonInputRemove.Click += new System.EventHandler(this.buttonInputRemove_Click);
             // 
             // tableLayoutPanelInputRegisterData
             // 
