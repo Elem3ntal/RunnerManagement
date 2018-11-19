@@ -24,7 +24,6 @@ namespace RunnerManagementGui
             loadProcess &= loadRegisterColumns();
             loadProcess &= loadResultColumns();
             sendMessage(loadProcess ? "Carga Correcta" : "Error al iniciar");
-            test();
         }
         public bool loadRegisterColumns()
         {
@@ -106,16 +105,6 @@ namespace RunnerManagementGui
         {
             labelMessagesText.Text = message;
         }
-        public void test()
-        {
-            RegistroCorrida dude = new RegistroCorrida();
-            dude.horaPartida = "19:15:30";
-            dude.horaLlegada = "20:30:25";
-            Console.WriteLine("se partio: {0}", dude.horaPartida);
-            Console.WriteLine("se llego: {0}", dude.horaLlegada);
-            Console.WriteLine("se demoro: {0}", dude.obtenerTiempo());
-        }
-
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -134,7 +123,7 @@ namespace RunnerManagementGui
              *      que los campos sean validos.
              *      que el numero del corredor, no este en Collections.
              */
-            if (validFields())
+            if (validFields() && validRegister())
             {
                 addRunner();
                 reloadRegisterRun();
@@ -143,7 +132,6 @@ namespace RunnerManagementGui
         }
         private bool validFields()
         {
-            bool isValid = true;
             int value;
             int.TryParse(textBoxInputNumber.Text, out value);
             if (value == 0)
@@ -151,7 +139,36 @@ namespace RunnerManagementGui
                 sendMessage(Texts.Words["invalidNumberRunner"]);
                 return false;
             }
+            if (comboBoxInputcategorie.SelectedIndex == 0)
+            {
+                sendMessage(Texts.Words["invalidCategorieRunner"]);
+                return false;
+            }
+            if (timestamp(dateTimePickerInputEnd.Value) - timestamp(dateTimePickerInputStart.Value) <= 0)
+            {
+                sendMessage(Texts.Words["invalidTimesRunner"]);
+                return false;
+            }
             return true;
+        }
+        private bool validRegister()
+        {
+            int value;
+            int.TryParse(textBoxInputNumber.Text, out value);
+            if (value > 0)
+            {
+                if (this.data.allRunners().Any(x => x["numero"] == value.ToString())){
+                    sendMessage(Texts.Words["RepitedNumberRunner"]);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private int timestamp(DateTime time)
+        {
+            int output;
+            int.TryParse(string.Format("{0}{1}{2}", time.Hour, time.Minute, time.Second), out output);
+            return output;
         }
 
         private void cleanRegister()
@@ -164,11 +181,9 @@ namespace RunnerManagementGui
         }
         private bool addRunner()
         {
-            //numero, corrida, hora start, hora end
             int numero, categorie;
             string timeStart = dateTimePickerInputStart.Text;
             string timeEnd = dateTimePickerInputEnd.Text;
-            Console.WriteLine("time end{0}", timeEnd);
             int.TryParse(textBoxInputNumber.Text, out numero);
             int.TryParse(comboBoxInputcategorie.SelectedValue.ToString(), out categorie);
             this.data.addRunner(new RegistroCorrida(numero, categorie, timeStart, timeEnd));

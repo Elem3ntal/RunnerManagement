@@ -21,13 +21,16 @@ namespace RunnerManagementGui
                     { "textButtonInputAdd", "Agregar" },
                     { "textButtonInputUpdate", "Actualizar" },
                     { "textButtonInputDelete", "Eliminar" },
-                    { "labelTitleRegisterRun", "Mensajes" },
-                    { "labelTitleMessages", "Registro Corrida" },
+                    { "labelTitleRegisterRun", "Registro Corrida" },
+                    { "labelTitleMessages", "Mensajes" },
                     { "labelTitleResultsRun", "Resultados Running" },
                     { "textButtonResultDelete", "Consultar" },
                     { "textButtonResultReset", "Resetear" },
                     { "textButtonClose", "Cerrar" },
                     { "invalidNumberRunner", "Numero de corredor Invalido" },
+                    { "invalidCategorieRunner", "Categoria de corredor Invalido" },
+                    { "invalidTimesRunner", "Tiempos del corredor Invalidos" },
+                    { "RepitedNumberRunner", "El numero de corredor ya existe" },
                 };
             }
         }
