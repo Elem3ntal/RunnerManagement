@@ -117,12 +117,6 @@ namespace RunnerManagementGui
 
         private void buttonInputAdd_Click(object sender, EventArgs e)
         {
-            //TODO: validar que se puede llamar a addRunner, 
-            //      es decir, los campos son validos
-            /* validar:
-             *      que los campos sean validos.
-             *      que el numero del corredor, no este en Collections.
-             */
             if (validFields() && validRegister())
             {
                 addRunner();
@@ -239,8 +233,9 @@ namespace RunnerManagementGui
 
         private void buttonInputRemove_Click(object sender, EventArgs e)
         {
-            if (removeRunner())
-                reloadRegisterRun();
+            if(validateActionRemove())
+                if (removeRunner())
+                    reloadRegisterRun();
             cleanRegister();
         }
         private bool updateRunner()
@@ -253,6 +248,24 @@ namespace RunnerManagementGui
             int.TryParse(comboBoxInputcategorie.SelectedValue.ToString(), out categorie);
             return this.data.updateRunner(new RegistroCorrida(numero, categorie, timeStart, timeEnd));
         }
+        private bool validateActionRemove()
+        {
+            if (validFields())
+            {
+                string[] lines = {
+                    Texts.Words["messageRemoveUser"],
+                    String.Format("Numero corredor: {0}", textBoxInputNumber.Text),
+                    String.Format("Categoria: {0}", comboBoxInputcategorie.GetItemText(comboBoxInputcategorie.SelectedItem)),
+                    String.Format("Hora Partida: {0}", dateTimePickerInputStart.Value),
+                    String.Format("Hora Llegada: {0}", dateTimePickerInputEnd.Value)};
+                DialogResult response = MessageBox.Show(string.Join("\n", lines), 
+                    Texts.Words["titleRemoveUser"], 
+                    MessageBoxButtons.YesNo);
+                return response == DialogResult.Yes;
+            }
+            return false;
+        }
+
         private bool removeRunner()
         {
             int numero;

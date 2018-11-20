@@ -31,6 +31,8 @@ namespace RunnerManagementGui
                     { "invalidCategorieRunner", "Categoria de corredor Invalido" },
                     { "invalidTimesRunner", "Tiempos del corredor Invalidos" },
                     { "RepitedNumberRunner", "El numero de corredor ya existe" },
+                    { "titleRemoveUser", "Confirme los datos a Eliminar" },
+                    { "messageRemoveUser", "Esta seguro de eliminar:" },
                 };
             }
         }
