@@ -24,6 +24,7 @@ namespace RunnerManagementGui
             loadProcess &= loadRegisterColumns();
             loadProcess &= loadResultColumns();
             sendMessage(loadProcess ? "Carga Correcta" : "Error al iniciar");
+            loadTestData();
         }
         public bool loadRegisterColumns()
         {
@@ -196,7 +197,19 @@ namespace RunnerManagementGui
             }
             return true;
         }
+        private bool reloadResultRun()
+        {
+            dataGridViewResultsRun.Rows.Clear();
+            foreach (Dictionary<string, string> runner in this.data.allRunnerSorted())
+            {
+                List<string> register = new List<string>();
+                foreach (string data in GridsStructure.ColumnsResult)
+                    register.Add(runner[data]);
+                dataGridViewResultsRun.Rows.Add(register.ToArray());
 
+            }
+            return true;
+        }
         private void dataGridViewRegisterRun_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
@@ -272,6 +285,37 @@ namespace RunnerManagementGui
             int.TryParse(textBoxInputNumber.Text, out numero);
             return this.data.removeRunner(numero);
 
+        }
+
+        private void buttonResultConsult_Click(object sender, EventArgs e)
+        {
+            reloadResultRun();
+        }
+        //TODO: delete this func
+        private void loadTestData()
+        {
+            this.data.addRunner(new RegistroCorrida(3, 1, "00:01:00", "00:01:01"));
+            this.data.addRunner(new RegistroCorrida(2, 1, "00:01:00", "00:01:02"));
+            this.data.addRunner(new RegistroCorrida(1, 1, "00:01:00", "00:01:03"));
+            this.data.addRunner(new RegistroCorrida(4, 2, "00:01:00", "00:01:01"));
+            this.data.addRunner(new RegistroCorrida(5, 2, "00:01:00", "00:01:02"));
+            this.data.addRunner(new RegistroCorrida(6, 2, "00:01:00", "00:01:03"));
+            this.data.addRunner(new RegistroCorrida(7, 3, "00:01:00", "00:01:01"));
+            this.data.addRunner(new RegistroCorrida(8, 3, "00:01:00", "00:01:02"));
+            this.data.addRunner(new RegistroCorrida(9, 3, "00:01:00", "00:01:03"));
+            reloadRegisterRun();
+        }
+
+        private void buttonResultReset_Click(object sender, EventArgs e)
+        {
+            resetAll();
+        }
+        private void resetAll()
+        {
+            data = new CollectionsRegister();
+            cleanRegister();
+            reloadRegisterRun();
+            reloadResultRun();
         }
     }
 }

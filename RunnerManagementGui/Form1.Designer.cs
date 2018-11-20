@@ -126,6 +126,7 @@
             this.buttonResultConsult.TabIndex = 0;
             this.buttonResultConsult.Text = "button1";
             this.buttonResultConsult.UseVisualStyleBackColor = true;
+            this.buttonResultConsult.Click += new System.EventHandler(this.buttonResultConsult_Click);
             // 
             // buttonResultReset
             // 
@@ -136,6 +137,7 @@
             this.buttonResultReset.TabIndex = 1;
             this.buttonResultReset.Text = "button2";
             this.buttonResultReset.UseVisualStyleBackColor = true;
+            this.buttonResultReset.Click += new System.EventHandler(this.buttonResultReset_Click);
             // 
             // buttonClose
             // 

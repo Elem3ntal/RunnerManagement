@@ -49,6 +49,37 @@ namespace RunnersLibrary
             }
             return true;
         }
+        public List<Dictionary<string, string>> allRunnerSorted()
+        {
+            List<Dictionary<string, string>> output = new List<Dictionary<string, string>>();
+            //busco las categorias validas, distintias de cero
+            List<string> valid_categories = new List<string>();
+            foreach (dynamic categorie in Categories.Options.Values)
+                if (categorie.Value != "")
+                    valid_categories.Add(categorie.Value);
+            List<string> categories = valid_categories.OrderBy(x => x).ToList();
+            //por cada categoria, buscar todos los corredores, ordenar y enumerar
+            foreach (string cat in categories)
+            {
+                var runners_cat = (from runner in (from runner_cat in this.runners where runner_cat.categoria.ToString() == cat select runner_cat)
+                                   orderby runner.obtenerTiempo()
+                                   select runner).ToList();
+                foreach (RegistroCorrida participant in runners_cat)
+                {
+                    dynamic textcat = Categories.Options[string.Format("OptionCategorie{0}", participant.categoria.ToString())];
+                    output.Add(new Dictionary<string, string> {
+                        { "numero", participant.numeroCorredor.ToString()},
+                        { "categoria", textcat.Text},
+                        { "horaPartida", participant.horaPartida},
+                        { "horaLlegada", participant.horaLlegada},
+                        { "Tiempo", participant.obtenerTiempo()},
+                        { "Lugar", (1+runners_cat.IndexOf(participant)).ToString()},
+                    });
+                }
+            }
+            return output;
+
+        }
         public List<Dictionary<string, string>> allRunners()
         {
             List<Dictionary<string, string>> output = new List<Dictionary<string, string>>();
@@ -65,7 +96,10 @@ namespace RunnersLibrary
                 });
             }
             return output;
-
+        }
+        public void removeAll()
+        {
+            //eliminar todos los weones
         }
     }
 }
